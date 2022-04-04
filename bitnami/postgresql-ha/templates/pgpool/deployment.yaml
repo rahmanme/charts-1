@@ -135,7 +135,7 @@ spec:
                   key: passwords
             {{- end }}
             - name: PGPOOL_BACKEND_NODES
-              value: {{ range $e, $i := until $postgresqlReplicaCount }}{{ $i }}:{{ $postgresqlFullname }}-{{ $i }}.{{ $postgresqlHeadlessServiceName }}:{{ $postgresalContainerPort }},{{ end }}
+              value: {{ range $e, $i := until $postgresqlReplicaCount }}{{ $i }}:{{ $postgresqlFullname }}-{{ $i }}.{{ $postgresqlHeadlessServiceName }}:{{ $postgresalContainerPort }},{{ end }}{{ range $i , $v := .Values.pgpool.externalBackend }}{{- add $i $postgresqlReplicaCount }}:{{ $v }},{{ end }}
             - name: PGPOOL_SR_CHECK_USER
               value: {{ (include "postgresql-ha.postgresqlRepmgrUsername" .) | quote }}
             {{- if .Values.postgresql.usePasswordFile }}

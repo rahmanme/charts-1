@@ -983,6 +983,11 @@ pgpool:
     ##
     certCAFilename: ""
 
+  ## @param pgpool.externalBackend refers to standalone backends not managed
+  ## by chart
+  ##
+  externalBackend: {}
+
 ## @section LDAP parameters
 ##
 
