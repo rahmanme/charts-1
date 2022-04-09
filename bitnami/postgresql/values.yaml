@@ -292,6 +292,7 @@ primary:
   ## NOTE: `primary.extendedConfiguration` will be ignored
   ##
   existingExtendedConfigmap: ""
+  configurationPath: /bitnami/postgresql/conf
   ## Initdb configuration
   ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md#specifying-initdb-arguments
   ##

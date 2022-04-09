@@ -465,7 +465,7 @@ spec:
             {{- end }}
             {{- if or .Values.primary.configuration .Values.primary.pgHbaConfiguration .Values.primary.existingConfigmap }}
             - name: postgresql-config
-              mountPath: /bitnami/postgresql/conf
+              mountPath: {{ .Values.primary.configurationPath }}
             {{- end }}
             {{- if .Values.primary.extraVolumeMounts }}
             {{- include "common.tplvalues.render" (dict "value" .Values.primary.extraVolumeMounts "context" $) | nindent 12 }}
