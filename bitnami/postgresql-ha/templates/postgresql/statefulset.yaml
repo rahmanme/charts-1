@@ -290,7 +290,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: REPMGR_PARTNER_NODES
-              value: {{ range $e, $i := until $postgresqlReplicaCount }}{{ $postgresqlFullname }}-{{ $i }}.{{ $postgresqlHeadlessServiceName }}.$(REPMGR_NAMESPACE).svc.{{ $clusterDomain }},{{ end }}
+              value: {{ range $e, $i := until $postgresqlReplicaCount }}{{ $postgresqlFullname }}-{{ $i }}.{{ $postgresqlHeadlessServiceName }}.$(REPMGR_NAMESPACE).svc.{{ $clusterDomain }},{{ end }}{{ range $i , $v := .Values.externalBackend }}{{- add $i $postgresqlReplicaCount }}:{{ $v }},{{ end }}
             - name: REPMGR_PRIMARY_HOST
               value: {{ printf "%s-0.%s.$(REPMGR_NAMESPACE).svc.%s" $postgresqlFullname $postgresqlHeadlessServiceName $clusterDomain | quote }}
             - name: REPMGR_NODE_NAME
